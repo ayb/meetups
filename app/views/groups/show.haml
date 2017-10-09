@@ -1,0 +1,19 @@
+%h1
+  = @group.name
+  Members
+
+%table
+  %tr
+    %td Name
+    %td Role
+  - @memberships.each do |membership|
+    %tr
+      %td= membership.member.name
+      %td= membership.role.name
+
+%hr/
+%h3 Actions
+%ul
+  %li= link_to "List Groups", groups_path
+  %li= link_to "Add Group", new_group_path
+  %li= link_to "Upload User Data", new_user_path

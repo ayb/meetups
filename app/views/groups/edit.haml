@@ -1,0 +1,8 @@
+- content_for :title do
+  Edit #{@group.name}
+
+%h1 Edit Group '#{@group.name}'
+
+= form_for @group do |form|
+  = render partial: "form", locals: { form: form }
+

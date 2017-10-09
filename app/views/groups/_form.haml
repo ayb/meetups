@@ -1,0 +1,10 @@
+%table
+  %tr
+    %td= form.label :name
+    %td= form.text_field :name
+  %tr
+    %td
+    %td
+      = form.submit "Save Group"
+      or
+      = link_to "Cancel", groups_path

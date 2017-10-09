@@ -1,0 +1,26 @@
+- content_for :title do
+  Groups
+
+- if @groups.present?
+  %h1 Active Groups
+  %table
+    %tr
+      %th Name
+      %th Organizer(s)
+      %th
+      %th
+    - @groups.each do |group|
+      %tr
+        %td= link_to group.name, group_path(group)
+        %td= group.organizer_names.join("<br/>").html_safe
+        %td= link_to "Edit", edit_group_path(group)
+        %td= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" }
+
+- else
+  %h1 No Groups Yet
+
+%hr/
+%h3 Actions
+%ul
+  %li= link_to "Add Group", new_group_path
+  %li= link_to "Upload User Data", new_user_path
