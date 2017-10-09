@@ -1,24 +1,9 @@
-# README
+# Meetups Demo App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Using:
+- Postgresql
+- HAML
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Before starting:
+- run migrations to create tables
+- run `rake db:seed` to backfill data for Roles table
