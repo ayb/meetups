@@ -1,0 +1,19 @@
+%h1 Upload User CSV
+
+%p
+  For Users the app should take a CSV file of the following format:
+  %br/
+  First Name, Last Name, Group Name, Role in Group
+
+= form_with url: users_path, local: true do |form|
+  %table
+    %tr
+      %td= form.label :select_csv_file
+      %td= form.file_field :csv
+    %tr
+      %td
+      %td
+        = form.submit "Upload Users"
+        or
+        = link_to "Cancel", groups_path
+
