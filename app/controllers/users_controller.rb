@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     counter = 0
     starting_users = User.count
     starting_groups = Group.count
+    failures = []
     csv_rows.each do |row|
       # allow row with or without headers
       next if row.first.downcase.strip.scan(/first|name/).present?
@@ -21,12 +22,16 @@ class UsersController < ApplicationController
       membership = Membership.where(group_id: group.id).find_by_user_id(user.id)
       membership ||= Membership.new(group_id: group.id, user_id: user.id)
       membership.role_id = role_ids[role.downcase]
-      membership.save!
-      counter += 1
+      if membership.save
+        counter += 1
+      else
+        failures.push("#{last_name}, #{first_name} could not process")
+      end
     end
     users_added = User.count - starting_users
     groups_added = Group.count - starting_groups
     flash[:notice] = "Processed #{counter} records. Added #{users_added} users and #{groups_added} groups."
+    flash[:error] = failures.join(",") + " could not be processed"
     redirect_to groups_path
   end
 
