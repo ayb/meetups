@@ -12,7 +12,7 @@
     - @groups.each do |group|
       %tr
         %td= link_to group.name, group_path(group)
-        %td= group.organizer_names.join("<br/>").html_safe
+        %td= group.organizers.names.join("<br/>").html_safe
         %td= link_to "Edit", edit_group_path(group)
         %td= link_to "Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" }
 
