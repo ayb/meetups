@@ -1,9 +1,8 @@
 class GroupsController < ApplicationController
   before_action :fetch_group, only: [:show, :edit, :update, :destroy]
 
-  # can optimize this to preload more + reduce number of database queries
   def index
-    @groups = Group.all.order(name: :asc)
+    @groups = Group.all.includes(:organizers).order(name: :asc)
   end
 
   def new
